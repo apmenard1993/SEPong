@@ -399,8 +399,8 @@ public class Graphics {
 //END GRAPHICS LIBRARY IMPLEMENTATION//
 /*----------------------------------------------------------------------------------------------------------*/
 
-const int SCREENWIDTH = 320;
-const int SCREENHEIGHT = 175;
+const int SCREENWIDTH = 300;
+const int SCREENHEIGHT = 150;
 const int FRAMES_PER_SECOND = 2; //20 fps attempts to run at 1 frame per tick and is severely laggy when running graphics scripts
 const int PADDLEW = 10;
 const int PADDLEH = 50;
@@ -428,12 +428,12 @@ public class Paddle{
     }
 
     public void movePaddleAI(Ball ball){
-        int by = ball.y;
+        int ballY = ball.y;
 
-        if(y > by + 2){
+        if(y > ballY + 2){
             movePaddle(true, false);
         }
-        else if(y < by - 2){
+        else if(y < ballY - 2){
             movePaddle(false, true);
         }
     }
@@ -475,7 +475,7 @@ public class Ball{
                 xVel = xVel * -1;
             }
             else if(x <= 0){
-                reset();
+                resetPos();
                 return 2;
             }
         }
@@ -485,7 +485,7 @@ public class Ball{
                 xVel = xVel * -1;
             }
             else if(x >= SCREENWIDTH){
-                reset();
+                resetPos();
                 return 1;
             }
         }
@@ -498,7 +498,7 @@ public class Ball{
 
     }
 
-    public void reset(){
+    public void resetPos(){
         x = SCREENWIDTH/2;
         y = SCREENHEIGHT/2;
     }
@@ -518,8 +518,8 @@ public class Pong{
 
     public Pong(Graphics g){
         graphics = g;
-        paddle1 = new Paddle((SCREENWIDTH/8)-5, (SCREENHEIGHT/2)-25, 5, graphics);
-        paddle2 = new Paddle((7*(SCREENWIDTH/8))-5, (SCREENHEIGHT/2)-25, 3, graphics);
+        paddle1 = new Paddle((SCREENWIDTH/8)-5, (SCREENHEIGHT/2)-25, 1, graphics);
+        paddle2 = new Paddle((7*(SCREENWIDTH/8))-5, (SCREENHEIGHT/2)-25, 1, graphics);
         ball = new Ball(SCREENWIDTH/2, SCREENHEIGHT/2, graphics);
     }
 
